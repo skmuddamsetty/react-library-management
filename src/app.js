@@ -40,11 +40,11 @@ const book2 = store.dispatch(
 );
 
 store.dispatch(editBook(book2.book.id, { price: 64500 }));
-store.dispatch(setTextFilter('book'));
+// store.dispatch(setTextFilter('book'));
 store.dispatch(sortByPrice());
 store.dispatch(sortByDate());
-store.dispatch(setStartDate(100));
-store.dispatch(setEndDate(200));
+// store.dispatch(setStartDate(100));
+// store.dispatch(setEndDate(200));
 
 const jsx = (
   <Provider store={store}>
