@@ -1,14 +1,11 @@
-const demoState = {
-  books: [],
-  filters: {
-    text: '',
-    sortBy: 'price',
-    startDate: undefined,
-    endDate: undefined,
-  },
-};
+import moment from 'moment';
 
-const filtersReducerDefaultState = demoState.filters;
+const filtersReducerDefaultState = {
+  text: '',
+  sortBy: 'price',
+  startDate: moment().startOf('month'),
+  endDate: moment().endOf('month'),
+};
 
 export default (state = filtersReducerDefaultState, action) => {
   switch (action.type) {

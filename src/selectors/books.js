@@ -1,10 +1,14 @@
+import moment from 'moment';
 // Get Visible Books
 const getVisibleBooks = (books, { text, sortBy, startDate, endDate }) => {
   const filteredBooks = books.filter((book) => {
-    const startDateMatch =
-      typeof startDate !== 'number' || book.publishedAt >= startDate;
-    const endDateMatch =
-      typeof startDate !== 'number' || book.publishedAt <= endDate;
+    const publishedAtMoment = moment(book.publishedAt);
+    const startDateMatch = startDate
+      ? startDate.isSameOrBefore(publishedAtMoment, 'day')
+      : true;
+    const endDateMatch = endDate
+      ? endDate.isSameOrAfter(publishedAtMoment, 'day')
+      : true;
     const textMatch = book.title.toLowerCase().includes(text.toLowerCase());
     return startDateMatch && endDateMatch && textMatch;
   });
