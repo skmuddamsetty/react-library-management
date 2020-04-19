@@ -11,6 +11,7 @@ import {
   sortByPrice,
 } from './actions/filters';
 import getVisibleBooks from './selectors/books';
+import { Provider } from 'react-redux';
 import 'normalize.css/normalize.css';
 import './styles/styles.scss';
 
@@ -41,7 +42,13 @@ const book2 = store.dispatch(
 store.dispatch(editBook(book2.book.id, { price: 64500 }));
 store.dispatch(setTextFilter('book'));
 store.dispatch(sortByPrice());
-// store.dispatch(sortByDate());
+store.dispatch(sortByDate());
 store.dispatch(setStartDate(100));
 store.dispatch(setEndDate(200));
-ReactDOM.render(<AppRouter />, document.getElementById('app'));
+
+const jsx = (
+  <Provider store={store}>
+    <AppRouter />
+  </Provider>
+);
+ReactDOM.render(jsx, document.getElementById('app'));

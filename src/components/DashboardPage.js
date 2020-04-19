@@ -1,3 +1,8 @@
 import React from 'react';
-const LibraryDashboardPage = () => <div>Library Dashboard Page</div>;
+import BooksList from './BooksList';
+const LibraryDashboardPage = () => (
+  <div>
+    <BooksList />
+  </div>
+);
 export default LibraryDashboardPage;
