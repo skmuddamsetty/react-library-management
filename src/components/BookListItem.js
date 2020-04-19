@@ -1,6 +1,6 @@
 import React from 'react';
-import { removeBook } from '../actions/books';
-import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+
 const BookListItem = ({
   title,
   description,
@@ -8,23 +8,18 @@ const BookListItem = ({
   publishedAt,
   id,
   dispatch,
+  history,
 }) => (
   <div>
-    <h3>
-      {title}
-      <span> - {description}</span>
-    </h3>
-
+    <Link to={`/edit-book/${id}`}>
+      <h3>
+        {title}
+        <span> - {description}</span>
+      </h3>
+    </Link>
     <p>{price}</p>
     <p>{publishedAt}</p>
-    <button
-      onClick={() => {
-        dispatch(removeBook({ id }));
-      }}
-    >
-      Remove
-    </button>
   </div>
 );
 
-export default connect()(BookListItem);
+export default BookListItem;

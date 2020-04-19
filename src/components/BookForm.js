@@ -4,14 +4,18 @@ import { SingleDatePicker } from 'react-dates';
 import 'react-dates/lib/css/_datePicker.css';
 
 class BookForm extends React.Component {
-  state = {
-    title: '',
-    description: '',
-    price: '',
-    createdAt: moment(),
-    calendarFocused: false,
-    error: '',
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      title: props.book ? props.book.title : '',
+      description: props.book ? props.book.description : '',
+      price: props.book ? (props.book.price / 100).toString() : '',
+      createdAt: props.book ? moment(props.book.publishedAt) : moment(),
+      calendarFocused: false,
+      error: '',
+    };
+  }
+
   titleChangeHandler = (e) => {
     const title = e.target.value;
     this.setState(() => ({
