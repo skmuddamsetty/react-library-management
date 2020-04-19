@@ -13,6 +13,7 @@ class BookListFilters extends React.Component {
     calendarFocused: null,
   };
   onDatesChangeHandler = ({ startDate, endDate }) => {
+    // startDate and endDate are moment instances that are passed by Date Range Picker
     this.props.dispatch(setStartDate(startDate));
     this.props.dispatch(setEndDate(endDate));
   };
