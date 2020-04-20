@@ -3,12 +3,15 @@ import { connect } from 'react-redux';
 import BookListItem from './BookListItem';
 import getVisibleBooks from '../selectors/books';
 
-const BooksList = (props) => (
+export const BooksList = (props) => (
   <div>
-    <h1>Books List</h1>
-    {props.books.map((book) => {
-      return <BookListItem key={book.id} {...book} />;
-    })}
+    {props.books.length === 0 ? (
+      <p>No Books</p>
+    ) : (
+      props.books.map((book) => {
+        return <BookListItem key={book.id} {...book} />;
+      })
+    )}
   </div>
 );
 
