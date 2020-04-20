@@ -8,36 +8,44 @@ import {
   setEndDate,
 } from '../actions/filters';
 import { DateRangePicker } from 'react-dates';
-class BookListFilters extends React.Component {
+
+export class BookListFilters extends React.Component {
   state = {
     calendarFocused: null,
   };
+
   onDatesChangeHandler = ({ startDate, endDate }) => {
     // startDate and endDate are moment instances that are passed by Date Range Picker
-    this.props.dispatch(setStartDate(startDate));
-    this.props.dispatch(setEndDate(endDate));
+    this.props.setStartDate(startDate);
+    this.props.setEndDate(endDate);
   };
+
   onFocusChangeHandler = (calendarFocused) => {
     this.setState(() => ({ calendarFocused }));
   };
+
+  textChangeHandler = (e) => {
+    this.props.setTextFilter(e.target.value);
+  };
+
+  selectChangeHandler = (e) => {
+    if (e.target.value === 'date') {
+      this.props.sortByDate();
+    } else if (e.target.value === 'price') {
+      this.props.sortByPrice();
+    }
+  };
+
   render() {
     return (
       <div>
         <input
           type='text'
           value={this.props.filters.text}
-          onChange={(e) => {
-            this.props.dispatch(setTextFilter(e.target.value));
-          }}
+          onChange={this.textChangeHandler}
         />
         <select
-          onChange={(e) => {
-            if (e.target.value === 'date') {
-              this.props.dispatch(sortByDate());
-            } else if (e.target.value === 'price') {
-              this.props.dispatch(sortByPrice());
-            }
-          }}
+          onChange={this.selectChangeHandler}
           value={this.props.filters.sortBy}
         >
           <option value='price'>Price</option>
@@ -64,4 +72,12 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps)(BookListFilters);
+const mapDispatchToProps = (dispatch) => ({
+  setTextFilter: (text) => dispatch(setTextFilter(text)),
+  sortByDate: () => dispatch(sortByDate()),
+  sortByPrice: () => dispatch(sortByPrice()),
+  setStartDate: (startDate) => dispatch(setStartDate(startDate)),
+  setEndDate: (endDate) => dispatch(setEndDate(endDate)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(BookListFilters);
