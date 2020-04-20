@@ -1,0 +1,24 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render EditBookPage correctly 1`] = `
+<div>
+  Edit Book Page
+  <BookForm
+    book={
+      Object {
+        "description": "This is the first node book",
+        "id": "3",
+        "price": 64500,
+        "publishedAt": 345600000,
+        "title": "Node Book",
+      }
+    }
+    onSubmit={[Function]}
+  />
+  <button
+    onClick={[Function]}
+  >
+    Remove Book
+  </button>
+</div>
+`;

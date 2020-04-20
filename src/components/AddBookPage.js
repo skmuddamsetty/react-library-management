@@ -7,8 +7,8 @@ export class AddBookPage extends React.Component {
   onSubmit = (book) => {
     // we should not use the below line as this makes testing this component harder
     // props.dispatch(addBook(book));
-    // we are calling the onSubmit property which has been obtained from mapDispatchToProps
-    this.props.onSubmit(book);
+    // we are calling the addBook property which has been obtained from mapDispatchToProps
+    this.props.addBook(book);
     // navigating the user to the dashboard page
     this.props.history.push('/');
   };
@@ -45,6 +45,6 @@ export class AddBookPage extends React.Component {
 
 // syntax for implicitly returning the object. this is same as the above commented code but uses a short hand syntax
 const mapDispatchToProps = (dispatch) => ({
-  onSubmit: (book) => dispatch(addBook(book)),
+  addBook: (book) => dispatch(addBook(book)),
 });
 export default connect(undefined, mapDispatchToProps)(AddBookPage);

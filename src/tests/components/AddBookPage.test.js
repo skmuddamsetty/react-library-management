@@ -3,12 +3,12 @@ import { shallow } from 'enzyme';
 import { AddBookPage } from '../../components/AddBookPage';
 import books from '../fixtures/books';
 
-let onSubmit, history, wrapper;
+let addBook, history, wrapper;
 
 beforeEach(() => {
-  onSubmit = jest.fn();
+  addBook = jest.fn();
   history = { push: jest.fn() };
-  wrapper = shallow(<AddBookPage onSubmit={onSubmit} history={history} />);
+  wrapper = shallow(<AddBookPage addBook={addBook} history={history} />);
 });
 
 test('should render AddBookPage correctly', () => {
@@ -18,5 +18,5 @@ test('should render AddBookPage correctly', () => {
 test('should handle onSubmit', () => {
   wrapper.find('BookForm').prop('onSubmit')(books[1]);
   expect(history.push).toHaveBeenCalledWith('/');
-  expect(onSubmit).toHaveBeenLastCalledWith(books[1]);
+  expect(addBook).toHaveBeenLastCalledWith(books[1]);
 });
