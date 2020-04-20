@@ -47,3 +47,14 @@ test('edit book works properly', () => {
   });
   expect(state[0].title).toEqual('Changed Title');
 });
+
+test('should not edit book if id not found', () => {
+  const state = booksReducer(books, {
+    type: 'EDIT_BOOK',
+    id: 'daddawdcac122as',
+    updates: {
+      title: 'Changed Title',
+    },
+  });
+  expect(state[0].title).toEqual(books[0].title);
+});
