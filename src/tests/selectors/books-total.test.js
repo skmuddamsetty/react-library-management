@@ -1,5 +1,6 @@
 import selectBooksTotal from '../../selectors/books-total';
 import books from '../fixtures/books';
+
 test('should return 0 if empty books', () => {
   const res = selectBooksTotal([]);
   expect(res).toBe(0);
