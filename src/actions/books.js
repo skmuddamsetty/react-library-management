@@ -1,19 +1,27 @@
 import uuid from 'uuid';
+import database from '../firebase/firebase';
+
 // ADD_BOOK
-export const addBook = ({
-  title = '',
-  description = '',
-  price = 0,
-  publishedAt = 0,
-}) => ({
+// export const addBook = ({
+//   title = '',
+//   description = '',
+//   price = 0,
+//   publishedAt = 0,
+// }) => ({
+//   type: 'ADD_BOOK',
+//   book: {
+//     id: uuid(),
+//     title,
+//     description,
+//     price,
+//     publishedAt,
+//   },
+// });
+
+// ADD_BOOK with new changes after adding thunk middleware
+export const addBook = (book) => ({
   type: 'ADD_BOOK',
-  book: {
-    id: uuid(),
-    title,
-    description,
-    price,
-    publishedAt,
-  },
+  book,
 });
 // EDIT_BOOK
 export const editBook = (id, updates) => ({
@@ -26,3 +34,23 @@ export const removeBook = ({ id } = {}) => ({
   type: 'REMOVE_BOOK',
   id,
 });
+
+// Changes after adding thunk middleware to dispatch functions instead of objects
+export const startAddBook = (bookData = {}) => {
+  // this function gets called by redux and redux passes the dispatch argument
+  return (dispatch) => {
+    const {
+      title = '',
+      description = '',
+      price = 0,
+      publishedAt = 0,
+    } = bookData;
+    const book = { title, description, price, publishedAt };
+    database
+      .ref('books')
+      .push(book)
+      .then((ref) => {
+        dispatch(addBook({ id: ref.key, ...book }));
+      });
+  };
+};
