@@ -12,9 +12,9 @@ import {
 } from './actions/filters';
 import getVisibleBooks from './selectors/books';
 import { Provider } from 'react-redux';
-import 'normalize.css/normalize.css';
-import './styles/styles.scss';
-import 'react-dates/lib/css/_datePicker.css';
+// import 'normalize.css/normalize.css';
+// import './styles/styles.scss';
+// import 'react-dates/lib/css/_datePicker.css';
 
 const store = configureStore();
 store.subscribe(() => {
