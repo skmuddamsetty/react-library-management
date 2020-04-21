@@ -54,7 +54,7 @@ const mapStateToProps = (state, props) => {
 };
 
 const mapDispatchToProps = (dispatch, props) => ({
-  editBook: (id, book) => dispatch(id, editBook(book)),
+  editBook: (id, book) => dispatch(editBook(id, book)),
   removeBook: ({ id }) => dispatch(removeBook({ id })),
 });
 
