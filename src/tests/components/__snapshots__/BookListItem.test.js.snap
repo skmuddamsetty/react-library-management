@@ -14,10 +14,10 @@ exports[`should render books list item with book 1`] = `
     </h3>
   </Link>
   <p>
-    54500
+    $545.00
   </p>
   <p>
-    0
+    December 31st, 1969
   </p>
 </div>
 `;
