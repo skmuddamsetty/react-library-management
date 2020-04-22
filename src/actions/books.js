@@ -46,7 +46,8 @@ export const startAddBook = (bookData = {}) => {
       publishedAt = 0,
     } = bookData;
     const book = { title, description, price, publishedAt };
-    database
+    // added return here so that in the unit test cases we can listen to this event with .then()
+    return database
       .ref('books')
       .push(book)
       .then((ref) => {

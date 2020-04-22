@@ -1,5 +1,15 @@
-import { addBook, removeBook, editBook } from '../../actions/books';
+import configureMockStore from 'redux-mock-store';
+import thunk from 'redux-thunk';
+import {
+  addBook,
+  removeBook,
+  editBook,
+  startAddBook,
+} from '../../actions/books';
 import books from '../fixtures/books';
+
+// creating the configuration so that all test cases can use the same mock store
+const createMockStore = configureMockStore([thunk]);
 
 test('should setup removeBook Action Object', () => {
   const action = removeBook({ id: '123' });
@@ -46,6 +56,28 @@ test('should setup addBook Action Object with provided values', () => {
   });
 });
 
-test('should add book to the database and store', () => {});
+test('should add book to the database and store', () => {
+  const store = createMockStore({});
+  // we can use the store variable above to dispatch asynchronous redux actions
+  const book = {
+    title: 'React Book',
+    description: 'This is the first react book',
+    price: 54500,
+    publishedAt: 0,
+  };
+  store.dispatch(startAddBook(book)).then(() => {
+    expect(1).toBe(2);
+    // done();
+  });
+  // .catch(done);
+  // store
+  //   .dispatch(startAddBook(book))
+  //   .then(() => {
+  //     expect(1).toBe(2);
+  //     // by calling done() we are forcing jest to make sure it waits untill the above assertion completes
+  //     done();
+  //   })
+  //   .catch(done);
+});
 
 test('should add book with defaults to database and store', () => {});
