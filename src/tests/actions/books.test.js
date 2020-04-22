@@ -7,6 +7,7 @@ import {
   startAddBook,
   setBooks,
   startSetBooks,
+  startRemoveBook,
 } from '../../actions/books';
 import books from '../fixtures/books';
 import database from '../../firebase/firebase';
@@ -39,6 +40,27 @@ afterEach(function () {
 test('should setup removeBook Action Object', () => {
   const action = removeBook({ id: '123' });
   expect(action).toEqual({ type: 'REMOVE_BOOK', id: '123' });
+});
+
+// testing startRemoveBook Async action
+test('should remove book from firebase', () => {
+  const store = createMockStore({});
+  const id = books[2].id;
+  store
+    .dispatch(startRemoveBook({ id }))
+    .then(() => {
+      const actions = store.getActions();
+      expect(actions[0]).toEqual({
+        type: 'REMOVE_BOOK',
+        id,
+      });
+      return database.ref(`books/${id}`).once('value');
+    })
+    .then((snapshot) => {
+      expect(snapshot.val()).toBeFalsy();
+      // done();
+    });
+  // .catch(done)
 });
 
 test('should setup editBook Action Object', () => {

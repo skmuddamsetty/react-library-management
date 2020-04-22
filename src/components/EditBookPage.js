@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import BookForm from './BookForm';
-import { editBook, removeBook } from '../actions/books';
+import { editBook, startRemoveBook } from '../actions/books';
 
 export class EditBookPage extends React.Component {
   onSubmit = (book) => {
@@ -10,7 +10,7 @@ export class EditBookPage extends React.Component {
   };
 
   removeBookHandler = () => {
-    this.props.removeBook({ id: this.props.book.id });
+    this.props.startRemoveBook({ id: this.props.book.id });
     this.props.history.push('/');
   };
 
@@ -55,7 +55,7 @@ const mapStateToProps = (state, props) => {
 
 const mapDispatchToProps = (dispatch, props) => ({
   editBook: (id, book) => dispatch(editBook(id, book)),
-  removeBook: ({ id }) => dispatch(removeBook({ id })),
+  startRemoveBook: ({ id }) => dispatch(startRemoveBook({ id })),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(EditBookPage);

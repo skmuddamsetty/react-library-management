@@ -35,6 +35,17 @@ export const removeBook = ({ id } = {}) => ({
   id,
 });
 
+export const startRemoveBook = ({ id } = {}) => {
+  return (dispatch) => {
+    return database
+      .ref(`books/${id}`)
+      .remove()
+      .then(() => {
+        dispatch(removeBook({ id }));
+      });
+  };
+};
+
 // Changes after adding thunk middleware to dispatch functions instead of objects
 export const startAddBook = (bookData = {}) => {
   // this function gets called by redux and redux passes the dispatch argument
