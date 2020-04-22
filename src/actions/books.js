@@ -29,6 +29,17 @@ export const editBook = (id, updates) => ({
   id,
   updates,
 });
+
+export const startEditBook = (id, updates) => {
+  return (dispatch) => {
+    return database
+      .ref(`books/${id}`)
+      .update(updates)
+      .then(() => {
+        dispatch(editBook(id, updates));
+      });
+  };
+};
 // REMOVE_BOOK
 export const removeBook = ({ id } = {}) => ({
   type: 'REMOVE_BOOK',

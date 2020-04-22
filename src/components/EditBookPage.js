@@ -1,11 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import BookForm from './BookForm';
-import { editBook, startRemoveBook } from '../actions/books';
+import { startEditBook, startRemoveBook } from '../actions/books';
 
 export class EditBookPage extends React.Component {
   onSubmit = (book) => {
-    this.props.editBook(this.props.book.id, book);
+    this.props.startEditBook(this.props.book.id, book);
     this.props.history.push('/');
   };
 
@@ -54,7 +54,7 @@ const mapStateToProps = (state, props) => {
 };
 
 const mapDispatchToProps = (dispatch, props) => ({
-  editBook: (id, book) => dispatch(editBook(id, book)),
+  startEditBook: (id, book) => dispatch(startEditBook(id, book)),
   startRemoveBook: ({ id }) => dispatch(startRemoveBook({ id })),
 });
 

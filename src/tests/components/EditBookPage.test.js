@@ -3,15 +3,15 @@ import { shallow } from 'enzyme';
 import { EditBookPage } from '../../components/EditBookPage';
 import books from '../fixtures/books';
 
-let editBook, startRemoveBook, history, wrapper;
+let startEditBook, startRemoveBook, history, wrapper;
 
 beforeEach(() => {
-  editBook = jest.fn();
+  startEditBook = jest.fn();
   startRemoveBook = jest.fn();
   history = { push: jest.fn() };
   wrapper = shallow(
     <EditBookPage
-      editBook={editBook}
+      startEditBook={startEditBook}
       history={history}
       startRemoveBook={startRemoveBook}
       book={books[2]}
@@ -23,10 +23,10 @@ test('should render EditBookPage correctly', () => {
   expect(wrapper).toMatchSnapshot();
 });
 
-test('should handle editBook', () => {
+test('should handle startEditBook', () => {
   wrapper.find('BookForm').prop('onSubmit')(books[2]);
   expect(history.push).toHaveBeenCalledWith('/');
-  expect(editBook).toHaveBeenLastCalledWith(books[2].id, books[2]);
+  expect(startEditBook).toHaveBeenLastCalledWith(books[2].id, books[2]);
 });
 
 test('should handle startRemoveBook', () => {

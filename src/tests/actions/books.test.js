@@ -8,6 +8,7 @@ import {
   setBooks,
   startSetBooks,
   startRemoveBook,
+  startEditBook,
 } from '../../actions/books';
 import books from '../fixtures/books';
 import database from '../../firebase/firebase';
@@ -70,6 +71,23 @@ test('should setup editBook Action Object', () => {
   expect(action).toEqual({ type: 'EDIT_BOOK', id, updates: { ...book } });
 });
 
+test('should edit book in firebase', () => {
+  const store = createMockStore({});
+  const id = books[1].id;
+  const updates = { price: 541000 };
+  store
+    .dispatch(startEditBook(id, updates))
+    .then(() => {
+      const actions = store.getActions();
+      expect(actions[0]).toEqual({ type: 'EDIT_BOOK', id, updates });
+      return database.ref(`books/${id}`).once('value');
+    })
+    .then((snapshot) => {
+      expect(snapshot.val().price).toBe(updates.price);
+      // done();
+    });
+  //.catch(done);
+});
 // commented this one because this will not work anymore as we have changed the action after adding thunk
 // test('should setup addBook Action Object with default values', () => {
 //   expect(addBook({})).toEqual({
