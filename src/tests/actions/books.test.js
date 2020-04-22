@@ -5,12 +5,35 @@ import {
   removeBook,
   editBook,
   startAddBook,
+  setBooks,
 } from '../../actions/books';
 import books from '../fixtures/books';
 import database from '../../firebase/firebase';
 
 // creating the configuration so that all test cases can use the same mock store
 const createMockStore = configureMockStore([thunk]);
+var originalTimeout;
+
+beforeEach(() => {
+  originalTimeout = jasmine.DEFAULT_TIMEOUT_INTERVAL;
+  jasmine.DEFAULT_TIMEOUT_INTERVAL = 10000;
+  const booksData = {};
+  books.forEach(({ id, description, title, price, publishedAt }) => {
+    booksData[id] = { description, title, price, publishedAt };
+  });
+  database
+    .ref('books')
+    .set(booksData)
+    .then(() => {
+      console.log('helloo');
+      // done();
+    });
+  // .catch(done);
+});
+
+afterEach(function () {
+  jasmine.DEFAULT_TIMEOUT_INTERVAL = originalTimeout;
+});
 
 test('should setup removeBook Action Object', () => {
   const action = removeBook({ id: '123' });
@@ -111,4 +134,9 @@ test('should add book with defaults to database and store', () => {
       // done();
     });
   // .catch(done);
+});
+
+test('should setup book action object with data', () => {
+  const action = setBooks(books);
+  expect(action).toEqual({ type: 'SET_BOOKS', books });
 });

@@ -10,6 +10,7 @@
     "build:prod": "webpack -p --env production",
     "dev-server": "webpack-dev-server",
     "test": "cross-env NODE_ENV=test jest --watch --config=jest.config.json",
+    "test:alt": "cross-env NODE_ENV=test jest --watch='2' --no-cache --coverage --config=jest.config.json",
     "start": "node server/server.js",
     "heroku-postbuild": "npm run build:prod"
   },

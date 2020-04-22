@@ -58,3 +58,12 @@ test('should not edit book if id not found', () => {
   });
   expect(state[0].title).toEqual(books[0].title);
 });
+
+test('should setup books', () => {
+  const initialBooks = [...books[1]];
+  const state = booksReducer(initialBooks, {
+    type: 'SET_BOOKS',
+    books,
+  });
+  expect(state).toEqual(books);
+});

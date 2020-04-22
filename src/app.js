@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import AppRouter from './routers/AppRouter';
 import configureStore from './store/configureStore';
-import { editBook, addBook, removeBook } from './actions/books';
+import { editBook, addBook, removeBook, startSetBooks } from './actions/books';
 import {
   setEndDate,
   setStartDate,
@@ -18,40 +18,42 @@ import './styles/styles.scss';
 import 'react-dates/lib/css/_datepicker.css';
 
 const store = configureStore();
-store.subscribe(() => {
-  const state = store.getState();
-  const visibleBooks = getVisibleBooks(state.books, state.filters);
-  console.log(visibleBooks);
-});
-const book1 = store.dispatch(
-  addBook({
-    title: 'React Book',
-    description: 'This is the first react book.',
-    price: 54500,
-    publishedAt: 200,
-  })
-);
+// store.subscribe(() => {
+//   const state = store.getState();
+//   const visibleBooks = getVisibleBooks(state.books, state.filters);
+//   console.log(visibleBooks);
+// });
+// const book1 = store.dispatch(
+//   addBook({
+//     title: 'React Book',
+//     description: 'This is the first react book.',
+//     price: 54500,
+//     publishedAt: 200,
+//   })
+// );
 
-const book2 = store.dispatch(
-  addBook({
-    title: 'Angular Book',
-    description: 'This is the first react book.',
-    price: 64500,
-    publishedAt: 100,
-  })
-);
+// const book2 = store.dispatch(
+//   addBook({
+//     title: 'Angular Book',
+//     description: 'This is the first react book.',
+//     price: 64500,
+//     publishedAt: 100,
+//   })
+// );
 
-store.dispatch(editBook(book2.book.id, { price: 64500 }));
-// store.dispatch(setTextFilter('book'));
-store.dispatch(sortByPrice());
-store.dispatch(sortByDate());
-// store.dispatch(setStartDate(100));
-// store.dispatch(setEndDate(200));
+// store.dispatch(editBook(book2.book.id, { price: 64500 }));
+// // store.dispatch(setTextFilter('book'));
+// store.dispatch(sortByPrice());
+// store.dispatch(sortByDate());
+// // store.dispatch(setStartDate(100));
+// // store.dispatch(setEndDate(200));
 
-// Completed Testing
 const jsx = (
   <Provider store={store}>
     <AppRouter />
   </Provider>
 );
-ReactDOM.render(jsx, document.getElementById('app'));
+ReactDOM.render(<p>Loading...</p>, document.getElementById('app'));
+store.dispatch(startSetBooks()).then(() => {
+  ReactDOM.render(jsx, document.getElementById('app'));
+});

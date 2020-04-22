@@ -16,6 +16,8 @@ const booksReducer = (state = booksReducerDefaultState, action) => {
           return book;
         }
       });
+    case 'SET_BOOKS':
+      return action.books;
     default:
       return state;
   }

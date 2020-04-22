@@ -55,3 +55,24 @@ export const startAddBook = (bookData = {}) => {
       });
   };
 };
+
+// SET_EXPENSES
+export const setBooks = (books) => ({
+  type: 'SET_BOOKS',
+  books,
+});
+
+export const startSetBooks = () => {
+  return (dispatch) => {
+    return database
+      .ref('books')
+      .once('value')
+      .then((snapshot) => {
+        const books = [];
+        snapshot.forEach((childSnapShot) => {
+          books.push({ id: childSnapShot.key, ...childSnapShot.val() });
+        });
+        dispatch(setBooks(books));
+      });
+  };
+};
