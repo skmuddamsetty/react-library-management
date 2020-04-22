@@ -108,5 +108,7 @@ test('should add book with defaults to database and store', () => {
     })
     .then((snapshot) => {
       expect(snapshot.val()).toEqual(bookDefaults);
+      // done();
     });
+  // .catch(done);
 });
