@@ -6,6 +6,7 @@ import {
   editBook,
   startAddBook,
   setBooks,
+  startSetBooks,
 } from '../../actions/books';
 import books from '../fixtures/books';
 import database from '../../firebase/firebase';
@@ -139,4 +140,18 @@ test('should add book with defaults to database and store', () => {
 test('should setup book action object with data', () => {
   const action = setBooks(books);
   expect(action).toEqual({ type: 'SET_BOOKS', books });
+});
+
+test('should fetch the books from firebase', () => {
+  // below line creates the store and empty object means that we do not need anything in the store
+  const store = createMockStore({});
+  store.dispatch(startSetBooks()).then(() => {
+    const actions = store.getActions();
+    expect(actions[0]).toEqual({
+      type: 'SET_BOOKS',
+      books,
+    });
+    // done();
+  });
+  // .catch(done);
 });
