@@ -7,6 +7,7 @@ import {
   startAddBook,
 } from '../../actions/books';
 import books from '../fixtures/books';
+import database from '../../firebase/firebase';
 
 // creating the configuration so that all test cases can use the same mock store
 const createMockStore = configureMockStore([thunk]);
@@ -65,19 +66,47 @@ test('should add book to the database and store', () => {
     price: 54500,
     publishedAt: 0,
   };
-  store.dispatch(startAddBook(book)).then(() => {
-    expect(1).toBe(2);
-    // done();
-  });
-  // .catch(done);
-  // store
-  //   .dispatch(startAddBook(book))
-  //   .then(() => {
-  //     expect(1).toBe(2);
-  //     // by calling done() we are forcing jest to make sure it waits untill the above assertion completes
-  //     done();
-  //   })
-  //   .catch(done);
+  store
+    .dispatch(startAddBook(book))
+    .then(() => {
+      const actions = store.getActions();
+      expect(actions[0]).toEqual({
+        type: 'ADD_BOOK',
+        book: {
+          id: expect.any(String),
+          ...book,
+        },
+      });
+      return database.ref(`books/$actions[0].book.id`).once('value');
+    })
+    .then((snapshot) => {
+      expect(snapshot.val()).toEqual(book);
+    });
 });
 
-test('should add book with defaults to database and store', () => {});
+test('should add book with defaults to database and store', () => {
+  const store = createMockStore({});
+  // we can use the store variable above to dispatch asynchronous redux actions
+  const bookDefaults = {
+    title: '',
+    description: '',
+    price: 0,
+    publishedAt: 0,
+  };
+  store
+    .dispatch(startAddBook({}))
+    .then(() => {
+      const actions = store.getActions();
+      expect(actions[0]).toEqual({
+        type: 'ADD_BOOK',
+        book: {
+          id: expect.any(String),
+          ...bookDefaults,
+        },
+      });
+      return database.ref(`books/$actions[0].book.id`).once('value');
+    })
+    .then((snapshot) => {
+      expect(snapshot.val()).toEqual(bookDefaults);
+    });
+});
