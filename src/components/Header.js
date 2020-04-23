@@ -8,6 +8,7 @@ const Header = () => (
         <Link to='/' className='header__title'>
           <h1>Library Management</h1>
         </Link>
+        <button className='button button--link'>Logout</button>
       </div>
     </div>
   </header>
