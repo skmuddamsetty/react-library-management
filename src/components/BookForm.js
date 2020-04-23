@@ -95,7 +95,7 @@ class BookForm extends React.Component {
             onChange={this.descriptionChangeHandler}
           ></textarea>
 
-          <button>Add Book</button>
+          <button className='button'>Add Book</button>
         </form>
       </div>
     );
