@@ -15,8 +15,14 @@ export class AddBookPage extends React.Component {
   render() {
     return (
       <div>
-        <h1>Add Book Page</h1>
-        <BookForm onSubmit={this.onSubmit} />
+        <div className='page-header'>
+          <div className='content-container'>
+            <h1 className='page-header__title'>Add Book</h1>
+          </div>
+        </div>
+        <div className='content-container'>
+          <BookForm onSubmit={this.onSubmit} />
+        </div>
       </div>
     );
   }

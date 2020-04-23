@@ -38,29 +38,40 @@ export class BookListFilters extends React.Component {
 
   render() {
     return (
-      <div>
-        <input
-          type='text'
-          value={this.props.filters.text}
-          onChange={this.textChangeHandler}
-        />
-        <select
-          onChange={this.selectChangeHandler}
-          value={this.props.filters.sortBy}
-        >
-          <option value='price'>Price</option>
-          <option value='date'>Published Date</option>
-        </select>
-        <DateRangePicker
-          startDate={this.props.filters.startDate}
-          endDate={this.props.filters.endDate}
-          onDatesChange={this.onDatesChangeHandler}
-          focusedInput={this.state.calendarFocused}
-          onFocusChange={this.onFocusChangeHandler}
-          numberOfMonths={1}
-          isOutsideRange={() => false}
-          showClearDates={true}
-        />
+      <div className='content-container'>
+        <div className='input-group'>
+          <div className='input-group__item'>
+            <input
+              className='text-input'
+              type='text'
+              value={this.props.filters.text}
+              onChange={this.textChangeHandler}
+              placeholder='Search Books'
+            />
+          </div>
+          <div className='input-group__item'>
+            <select
+              className='select'
+              onChange={this.selectChangeHandler}
+              value={this.props.filters.sortBy}
+            >
+              <option value='price'>Price</option>
+              <option value='date'>Published Date</option>
+            </select>
+          </div>
+          <div className='input-group__item'>
+            <DateRangePicker
+              startDate={this.props.filters.startDate}
+              endDate={this.props.filters.endDate}
+              onDatesChange={this.onDatesChangeHandler}
+              focusedInput={this.state.calendarFocused}
+              onFocusChange={this.onFocusChangeHandler}
+              numberOfMonths={1}
+              isOutsideRange={() => false}
+              showClearDates={true}
+            />
+          </div>
+        </div>
       </div>
     );
   }

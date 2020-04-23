@@ -65,39 +65,41 @@ class BookForm extends React.Component {
   };
   render() {
     return (
-      <div>
-        {this.state.error && <p>{this.state.error}</p>}
-        <form onSubmit={this.submitHandler}>
-          <input
-            type='text'
-            placeholder='Title'
-            autoFocus
-            value={this.state.title}
-            onChange={this.titleChangeHandler}
-          />
-          <input
-            type='text'
-            placeholder='Amount'
-            value={this.state.price}
-            onChange={this.priceChangeHandler}
-          />
-          <SingleDatePicker
-            date={this.state.createdAt}
-            onDateChange={this.dateChangeHandler}
-            onFocusChange={this.dateFocusChangeHandler}
-            focused={this.state.calendarFocused}
-            numberOfMonths={1}
-            isOutsideRange={() => false}
-          />
-          <textarea
-            placeholder='Add a description for your book'
-            value={this.state.description}
-            onChange={this.descriptionChangeHandler}
-          ></textarea>
-
-          <button className='button'>Add Book</button>
-        </form>
-      </div>
+      <form onSubmit={this.submitHandler} className='form'>
+        {this.state.error && <p className='form__error'>{this.state.error}</p>}
+        <input
+          className='text-input'
+          type='text'
+          placeholder='Title'
+          autoFocus
+          value={this.state.title}
+          onChange={this.titleChangeHandler}
+        />
+        <input
+          className='text-input'
+          type='text'
+          placeholder='Amount'
+          value={this.state.price}
+          onChange={this.priceChangeHandler}
+        />
+        <SingleDatePicker
+          date={this.state.createdAt}
+          onDateChange={this.dateChangeHandler}
+          onFocusChange={this.dateFocusChangeHandler}
+          focused={this.state.calendarFocused}
+          numberOfMonths={1}
+          isOutsideRange={() => false}
+        />
+        <textarea
+          className='text-area'
+          placeholder='Add a description for your book'
+          value={this.state.description}
+          onChange={this.descriptionChangeHandler}
+        ></textarea>
+        <div>
+          <button className='button'>Save Book</button>
+        </div>
+      </form>
     );
   }
 }
