@@ -6,11 +6,11 @@ import SideBar from './SideBar';
 const LibraryDashboardPage = () => (
   <div>
     <BooksSummary />
-    <BookListFilters />
     <div className='content-container'>
       <div className='results-layout'>
         <SideBar />
         <div className='books-list'>
+          <BookListFilters />
           <BooksList />
         </div>
       </div>
