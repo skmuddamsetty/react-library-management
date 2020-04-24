@@ -4,14 +4,23 @@ import BookListItem from './BookListItem';
 import getVisibleBooks from '../selectors/books';
 
 export const BooksList = (props) => (
-  <div>
-    {props.books.length === 0 ? (
-      <p>No Books</p>
-    ) : (
-      props.books.map((book) => {
-        return <BookListItem key={book.id} {...book} />;
-      })
-    )}
+  <div className='content-container'>
+    <div className='list-header'>
+      <div className='show-for-mobile'>Books</div>
+      <div className='show-for-desktop'>Book</div>
+      <div className='show-for-desktop'>Price</div>
+    </div>
+    <div className='list-body'>
+      {props.books.length === 0 ? (
+        <div className='list-item list-item--message'>
+          <span>No Books</span>
+        </div>
+      ) : (
+        props.books.map((book) => {
+          return <BookListItem key={book.id} {...book} />;
+        })
+      )}
+    </div>
   </div>
 );
 

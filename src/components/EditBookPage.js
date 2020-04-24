@@ -17,9 +17,20 @@ export class EditBookPage extends React.Component {
   render() {
     return (
       <div>
-        Edit Book Page
-        <BookForm book={this.props.book} onSubmit={this.onSubmit} />
-        <button onClick={this.removeBookHandler}>Remove Book</button>
+        <div className='page-header'>
+          <div className='content-container'>
+            <h1 className='page-header__title'>Edit Book</h1>
+          </div>
+        </div>
+        <div className='content-container'>
+          <BookForm book={this.props.book} onSubmit={this.onSubmit} />
+          <button
+            onClick={this.removeBookHandler}
+            className='button button--secondary'
+          >
+            Remove Book
+          </button>
+        </div>
       </div>
     );
   }

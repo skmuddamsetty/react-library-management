@@ -1,23 +1,26 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`should render books list item with book 1`] = `
-<div>
-  <Link
-    to="/edit-book/1"
-  >
-    <h3>
+<Link
+  className="list-item"
+  to="/edit-book/1"
+>
+  <div>
+    <h3
+      className="list-item__title"
+    >
       React Book
-      <span>
-         - 
-        This is the first react book
-      </span>
     </h3>
-  </Link>
-  <p>
+    <span
+      className="list-item__subtitle"
+    >
+      December 31st, 1969
+    </span>
+  </div>
+  <h3
+    className="list-item__data"
+  >
     $545.00
-  </p>
-  <p>
-    December 31st, 1969
-  </p>
-</div>
+  </h3>
+</Link>
 `;

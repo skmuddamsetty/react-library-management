@@ -58,9 +58,8 @@ test('should remove book from firebase', (done) => {
       return database.ref(`books/${id}`).once('value');
     })
     .then((snapshot) => {
-      console.log('completed removeBook Async Action', snapshot.val());
-      expect(snapshot.val()).toBe(1);
-      // done();
+      expect(snapshot.val()).toBeFalsy();
+      done();
     });
   // .catch(done);
 });
