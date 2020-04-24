@@ -1,4 +1,5 @@
 import React from 'react';
+
 const SideBar = (props) => (
   <div className='sidebar'>
     <div className='list-body'>

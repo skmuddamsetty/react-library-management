@@ -3,7 +3,20 @@
 exports[`should render dashboard page 1`] = `
 <div>
   <Connect(BooksSummary) />
-  <Connect(BookListFilters) />
-  <Connect(BooksList) />
+  <div
+    className="content-container"
+  >
+    <div
+      className="results-layout"
+    >
+      <SideBar />
+      <div
+        className="books-list"
+      >
+        <Connect(BookListFilters) />
+        <Connect(BooksList) />
+      </div>
+    </div>
+  </div>
 </div>
 `;
