@@ -2,11 +2,25 @@
 
 exports[`should render AddBookPage correctly 1`] = `
 <div>
-  <h1>
-    Add Book Page
-  </h1>
-  <BookForm
-    onSubmit={[Function]}
-  />
+  <div
+    className="page-header"
+  >
+    <div
+      className="content-container"
+    >
+      <h1
+        className="page-header__title"
+      >
+        Add Book
+      </h1>
+    </div>
+  </div>
+  <div
+    className="content-container"
+  >
+    <BookForm
+      onSubmit={[Function]}
+    />
+  </div>
 </div>
 `;

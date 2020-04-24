@@ -1,35 +1,89 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`should render books list with books 1`] = `
-<div>
-  <BookListItem
-    description="This is the first react book"
-    id="1"
-    price={54500}
-    publishedAt={0}
-    title="React Book"
-  />
-  <BookListItem
-    description="This is the first angular book"
-    id="2"
-    price={74500}
-    publishedAt={-345600000}
-    title="Angular Book"
-  />
-  <BookListItem
-    description="This is the first node book"
-    id="3"
-    price={64500}
-    publishedAt={345600000}
-    title="Node Book"
-  />
+<div
+  className="content-container"
+>
+  <div
+    className="list-header"
+  >
+    <div
+      className="show-for-mobile"
+    >
+      Books
+    </div>
+    <div
+      className="show-for-desktop"
+    >
+      Book
+    </div>
+    <div
+      className="show-for-desktop"
+    >
+      Price
+    </div>
+  </div>
+  <div
+    className="list-body"
+  >
+    <BookListItem
+      description="This is the first react book"
+      id="1"
+      price={54500}
+      publishedAt={0}
+      title="React Book"
+    />
+    <BookListItem
+      description="This is the first angular book"
+      id="2"
+      price={74500}
+      publishedAt={-345600000}
+      title="Angular Book"
+    />
+    <BookListItem
+      description="This is the first node book"
+      id="3"
+      price={64500}
+      publishedAt={345600000}
+      title="Node Book"
+    />
+  </div>
 </div>
 `;
 
 exports[`should render books list with empty list 1`] = `
-<div>
-  <p>
-    No Books
-  </p>
+<div
+  className="content-container"
+>
+  <div
+    className="list-header"
+  >
+    <div
+      className="show-for-mobile"
+    >
+      Books
+    </div>
+    <div
+      className="show-for-desktop"
+    >
+      Book
+    </div>
+    <div
+      className="show-for-desktop"
+    >
+      Price
+    </div>
+  </div>
+  <div
+    className="list-body"
+  >
+    <div
+      className="list-item list-item--message"
+    >
+      <span>
+        No Books
+      </span>
+    </div>
+  </div>
 </div>
 `;
