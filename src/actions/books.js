@@ -1,6 +1,6 @@
 import uuid from 'uuid';
 import database from '../firebase/firebase';
-
+import axios from 'axios';
 // ADD_BOOK
 // export const addBook = ({
 //   title = '',
@@ -60,7 +60,7 @@ export const startRemoveBook = ({ id } = {}) => {
 // Changes after adding thunk middleware to dispatch functions instead of objects
 export const startAddBook = (bookData = {}) => {
   // this function gets called by redux and redux passes the dispatch argument
-  return (dispatch) => {
+  return async (dispatch) => {
     const {
       title = '',
       description = '',
@@ -68,6 +68,18 @@ export const startAddBook = (bookData = {}) => {
       publishedAt = 0,
     } = bookData;
     const book = { title, description, price, publishedAt };
+    try {
+      const config = {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      };
+      const body = JSON.stringify(book);
+      const res = await axios.get('/api/v1/tours/top-5-cheap');
+      console.log(res);
+    } catch (err) {
+      console.log(err);
+    }
     // added return here so that in the unit test cases we can listen to this event with .then()
     return database
       .ref('books')
