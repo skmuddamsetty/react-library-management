@@ -12,7 +12,7 @@ exports[`should render Header correctly based off of snapshot 1`] = `
     >
       <Link
         className="header__title"
-        to="/"
+        to="/dashboard"
       >
         <h1>
           Library Management

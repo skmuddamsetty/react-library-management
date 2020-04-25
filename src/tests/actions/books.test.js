@@ -14,6 +14,8 @@ import books from '../fixtures/books';
 import database from '../../firebase/firebase';
 
 // // creating the configuration so that all test cases can use the same mock store
+const uid = 'thisismytestuid';
+const defaultAuthState = { auth: { uid } };
 const createMockStore = configureMockStore([thunk]);
 var originalTimeout;
 
@@ -25,7 +27,7 @@ beforeEach((done) => {
     booksData[id] = { description, title, price, publishedAt };
   });
   database
-    .ref('books')
+    .ref(`user/${uid}/books`)
     .set(booksData)
     .then(() => {
       done();
@@ -44,7 +46,7 @@ test('should setup removeBook Action Object', () => {
 
 // testing startRemoveBook Async action
 test('should remove book from firebase', (done) => {
-  const store = createMockStore({});
+  const store = createMockStore(defaultAuthState);
   const id = books[2].id;
 
   store
@@ -55,7 +57,7 @@ test('should remove book from firebase', (done) => {
         type: 'REMOVE_BOOK',
         id,
       });
-      return database.ref(`books/${id}`).once('value');
+      return database.ref(`users/${uid}/books/${id}`).once('value');
     })
     .then((snapshot) => {
       expect(snapshot.val()).toBeFalsy();
@@ -72,7 +74,7 @@ test('should remove book from firebase', (done) => {
 // });
 
 // test('should edit book in firebase', () => {
-//   const store = createMockStore({});
+//   const store = createMockStore(defaultAuthState);
 //   const id = books[1].id;
 //   const updates = { price: 541000 };
 //   store
@@ -80,7 +82,7 @@ test('should remove book from firebase', (done) => {
 //     .then(() => {
 //       const actions = store.getActions();
 //       expect(actions[0]).toEqual({ type: 'EDIT_BOOK', id, updates });
-//       return database.ref(`books/${id}`).once('value');
+//       return database.ref(`users/${uid}/books/${id}`).once('value');
 //     })
 //     .then((snapshot) => {
 //       // expect(snapshot.val().price).toBe(updates.price);
@@ -122,7 +124,7 @@ test('should remove book from firebase', (done) => {
 // });
 
 // test('should add book to the database and store', (done) => {
-//   const store = createMockStore({});
+//   const store = createMockStore(defaultAuthState);
 //   // we can use the store variable above to dispatch asynchronous redux actions
 //   const book = {
 //     title: 'React Book',
@@ -141,7 +143,7 @@ test('should remove book from firebase', (done) => {
 //           ...book,
 //         },
 //       });
-//       return database.ref(`books/${actions[0].book.id}`).once('value');
+//       return database.ref(`users/${uid}/books/${actions[0].book.id}`).once('value');
 //     })
 //     .then((snapshot) => {
 //       console.log('################inside');
@@ -153,7 +155,7 @@ test('should remove book from firebase', (done) => {
 // });
 
 // test('should add book with defaults to database and store', async () => {
-//   const store = createMockStore({});
+//   const store = createMockStore(defaultAuthState);
 //   // we can use the store variable above to dispatch asynchronous redux actions
 //   const bookDefaults = {
 //     title: '',
@@ -173,7 +175,7 @@ test('should remove book from firebase', (done) => {
 //             ...bookDefaults,
 //           },
 //         });
-//         return database.ref(`books/${actions[0].book.id}`).once('value');
+//         return database.ref(`users/${uid}/books/${actions[0].book.id}`).once('value');
 //       })
 //       .then((snapshot) => {
 //         expect(1).toBe(2);
@@ -193,7 +195,7 @@ test('should remove book from firebase', (done) => {
 
 // test('should fetch the books from firebase', () => {
 //   // below line creates the store and empty object means that we do not need anything in the store
-//   const store = createMockStore({});
+//   const store = createMockStore(defaultAuthState);
 //   store.dispatch(startSetBooks()).then(() => {
 //     const actions = store.getActions();
 //     expect(actions[0]).toEqual({
