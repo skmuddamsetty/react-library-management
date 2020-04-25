@@ -14,3 +14,13 @@
     padding: $s-size 0;
   }
 }
+
+.main-header {
+  height: 7rem;
+  background-color: #fff;
+  border-bottom: grey;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1.4rem;
+}
