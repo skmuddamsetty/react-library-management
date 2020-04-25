@@ -20,6 +20,7 @@ exports[`should render Header correctly based off of snapshot 1`] = `
       </Link>
       <button
         className="button button--link"
+        onClick={[Function]}
       >
         Logout
       </button>

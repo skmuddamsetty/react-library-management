@@ -5,7 +5,6 @@ import { startLogin } from '../actions/auth';
 export const LoginPage = (props) => {
   return (
     <div>
-      Login Page
       <button className='button' onClick={props.startLogin}>
         Login
       </button>
