@@ -10,6 +10,7 @@ import {
   sortByDate,
   sortByPrice,
 } from './actions/filters';
+import { login, logout } from './actions/auth';
 import getVisibleBooks from './selectors/books';
 import { Provider } from 'react-redux';
 import './firebase/firebase';
@@ -67,6 +68,7 @@ ReactDOM.render(<LoadingPage />, document.getElementById('app'));
 
 firebase.auth().onAuthStateChanged((user) => {
   if (user) {
+    store.dispatch(login(user.uid));
     store.dispatch(startSetBooks()).then(() => {
       renderApp();
       if (history.location.pathname === '/') {
@@ -74,6 +76,7 @@ firebase.auth().onAuthStateChanged((user) => {
       }
     });
   } else {
+    store.dispatch(logout());
     renderApp();
     history.push('/');
   }
