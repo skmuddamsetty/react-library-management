@@ -1,7 +1,14 @@
 // LOGO
-.logo {
-  height: 3.25rem;
-  margin-left: 2rem;
+.logo-box {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 3rem;
+  font-weight: 700;
+  &__logo {
+    height: 3.25rem;
+    margin-left: 2rem;
+  }
 }
 
 // SEARCH BOX

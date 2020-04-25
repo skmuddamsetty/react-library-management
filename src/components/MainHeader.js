@@ -3,7 +3,10 @@ import React from 'react';
 const MainHeader = () => {
   return (
     <header className='main-header'>
-      <img src='/images/favicon.png' alt='Logo' className='logo' />
+      <div className='logo-box'>
+        <img src='/images/favicon.png' alt='Logo' className='logo-box__logo' />
+        <span className='logo-box__title'>Sunshine Library</span>
+      </div>
       <form className='search'>
         <input
           type='text'
