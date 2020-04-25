@@ -1,0 +1,25 @@
+.box-layout {
+  background: url('/public/images/bg.jpg');
+  background-image: linear-gradient(to right bottom, $primary, $secondary),
+    url('/images/bg.jpg');
+  background-size: cover;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  &__box {
+    background: fade-out(white, $amount: 0.15);
+    border-radius: 3px;
+    text-align: center;
+    width: 25rem;
+    @media (min-width: $desktop-breakpoint) {
+      width: 50rem;
+    }
+    padding: $m-size $l-size;
+  }
+  &__title {
+    margin: 0 0 $m-size 0;
+    line-height: 1;
+  }
+}
