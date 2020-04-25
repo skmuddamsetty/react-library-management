@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import AppRouter from './routers/AppRouter';
+import AppRouter, { history } from './routers/AppRouter';
 import configureStore from './store/configureStore';
 import { editBook, addBook, removeBook, startSetBooks } from './actions/books';
 import {
@@ -55,15 +55,26 @@ const jsx = (
     <AppRouter />
   </Provider>
 );
+
+let hasRendered = false;
+const renderApp = () => {
+  if (!hasRendered) {
+    ReactDOM.render(jsx, document.getElementById('app'));
+    hasRendered = true;
+  }
+};
 ReactDOM.render(<LoadingPage />, document.getElementById('app'));
-store.dispatch(startSetBooks()).then(() => {
-  ReactDOM.render(jsx, document.getElementById('app'));
-});
 
 firebase.auth().onAuthStateChanged((user) => {
   if (user) {
-    console.log('log in');
+    store.dispatch(startSetBooks()).then(() => {
+      renderApp();
+      if (history.location.pathname === '/') {
+        history.push('/dashboard');
+      }
+    });
   } else {
-    console.log('logged out');
+    renderApp();
+    history.push('/');
   }
 });

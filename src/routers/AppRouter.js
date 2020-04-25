@@ -1,5 +1,6 @@
 import React from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { Router, Route, Switch } from 'react-router-dom';
+import createHistory from 'history/createBrowserHistory';
 import LibraryDashboardPage from '../components/DashboardPage';
 import AddBookPage from '../components/AddBookPage';
 import EditBookPage from '../components/EditBookPage';
@@ -8,8 +9,11 @@ import NotFoundPage from '../components/NotFoundPage';
 import Header from '../components/Header';
 import LoginPage from '../components/LoginPage';
 
+export const history = createHistory();
+
 const AppRouter = () => (
-  <BrowserRouter>
+  // Switching from BrowserRouter to Router so that we can pass our own history object
+  <Router history={history}>
     <div>
       <Header />
       <Switch>
@@ -21,7 +25,7 @@ const AppRouter = () => (
         <Route component={NotFoundPage} />
       </Switch>
     </div>
-  </BrowserRouter>
+  </Router>
 );
 
 export default AppRouter;
