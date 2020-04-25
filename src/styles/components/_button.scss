@@ -1,5 +1,5 @@
 .button {
-  background: $fav-blue;
+  background: linear-gradient(to right bottom, $primary, $secondary);
   color: white;
   border: none;
   display: inline-block;

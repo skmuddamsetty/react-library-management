@@ -1,5 +1,5 @@
 .header {
-  background: $fav-blue;
+  background: linear-gradient(to right bottom, $primary, $secondary);
   &__title {
     color: white;
     text-decoration: none;
