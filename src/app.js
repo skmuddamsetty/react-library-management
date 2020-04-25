@@ -17,6 +17,7 @@ import 'normalize.css/normalize.css';
 import './styles/styles.scss';
 import 'react-dates/lib/css/_datepicker.css';
 import LoadingPage from './components/LoadingPage';
+import { firebase } from './firebase/firebase';
 
 const store = configureStore();
 // store.subscribe(() => {
@@ -57,4 +58,12 @@ const jsx = (
 ReactDOM.render(<LoadingPage />, document.getElementById('app'));
 store.dispatch(startSetBooks()).then(() => {
   ReactDOM.render(jsx, document.getElementById('app'));
+});
+
+firebase.auth().onAuthStateChanged((user) => {
+  if (user) {
+    console.log('log in');
+  } else {
+    console.log('logged out');
+  }
 });

@@ -75,7 +75,7 @@ export const startAddBook = (bookData = {}) => {
         },
       };
       const body = JSON.stringify(book);
-      const res = await axios.get('/api/v1/tours/top-5-cheap');
+      const res = await axios.get('/api/v1/books');
       console.log(res);
     } catch (err) {
       console.log(err);
@@ -97,7 +97,13 @@ export const setBooks = (books) => ({
 });
 
 export const startSetBooks = () => {
-  return (dispatch) => {
+  return async (dispatch) => {
+    try {
+      const res = await axios.get('/api/v1/books');
+      console.log(res);
+    } catch (err) {
+      console.log(err);
+    }
     return database
       .ref('books')
       .once('value')
