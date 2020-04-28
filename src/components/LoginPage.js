@@ -6,7 +6,6 @@ import MainHeader from './MainHeader';
 export const LoginPage = (props) => {
   return (
     <div>
-      <MainHeader />
       <div className='box-layout'>
         <div className='box-layout__box'>
           <h1 className='box-layout__title'>Sunshine Library</h1>
