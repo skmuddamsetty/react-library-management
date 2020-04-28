@@ -28,11 +28,9 @@ export const MainHeader = (props) => {
           <span className='user-nav__notification'>0</span>
         </div>
         <div className='user-nav__user'>
-          <img
-            src='/images/loader.gif'
-            alt='User Photo'
-            className='user-nav__user-photo'
-          />
+          <svg className='user-nav__user-photo'>
+            <use xlinkHref='/images/sprite.svg#icon-user'></use>
+          </svg>
           {props.userInfo && props.userInfo.displayName ? (
             <span className='user-nav__user-name'>
               {props.userInfo.displayName}
