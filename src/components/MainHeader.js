@@ -7,7 +7,7 @@ export const MainHeader = (props) => {
     <header className='main-header'>
       <div className='logo-box'>
         <img src='/images/favicon.png' alt='Logo' className='logo-box__logo' />
-        <span className='logo-box__title'>Sunshine Library</span>
+        {/*<span className='logo-box__title'>Sunshine Library</span>*/}
       </div>
       <form className='search'>
         <input
@@ -34,7 +34,7 @@ export const MainHeader = (props) => {
           </svg>
           {props.userInfo && props.userInfo.displayName ? (
             <span className='user-nav__user-name'>
-              {props.userInfo.displayName}
+              {props.userInfo.displayName.toUpperCase()}
             </span>
           ) : (
             <button
