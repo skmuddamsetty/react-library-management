@@ -17,6 +17,8 @@ export const login = (uid) => ({
   uid,
 });
 
+export const userInfo = (data) => ({ type: 'SET_USER_INFO', data });
+
 export const logout = () => ({
   type: 'LOGOUT',
 });

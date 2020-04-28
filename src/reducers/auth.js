@@ -1,4 +1,4 @@
-export default (state = {}, action) => {
+export default (state = { uid: '', userInfo: {} }, action) => {
   switch (action.type) {
     case 'LOGIN':
       return {
@@ -6,6 +6,8 @@ export default (state = {}, action) => {
       };
     case 'LOGOUT':
       return {};
+    case 'SET_USER_INFO':
+      return { ...state, userInfo: { ...action.data } };
     default:
       return state;
   }

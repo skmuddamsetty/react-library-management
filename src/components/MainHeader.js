@@ -1,6 +1,7 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
-const MainHeader = () => {
+export const MainHeader = (props) => {
   return (
     <header className='main-header'>
       <div className='logo-box'>
@@ -32,11 +33,22 @@ const MainHeader = () => {
             alt='User Photo'
             className='user-nav__user-photo'
           />
-          <span className='user-nav__user-name'>John Doe</span>
+          {props.userInfo && props.userInfo.displayName ? (
+            <span className='user-nav__user-name'>
+              {props.userInfo.displayName}
+            </span>
+          ) : (
+            <span className='user-nav__user-name'>Login</span>
+          )}
         </div>
       </nav>
     </header>
   );
 };
 
-export default MainHeader;
+const mapStateToProps = (state) => {
+  return {
+    userInfo: state.auth.userInfo,
+  };
+};
+export default connect(mapStateToProps)(MainHeader);
