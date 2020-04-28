@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { startLogin } from '../actions/auth';
 
 export const MainHeader = (props) => {
   return (
@@ -36,7 +37,12 @@ export const MainHeader = (props) => {
               {props.userInfo.displayName}
             </span>
           ) : (
-            <span className='user-nav__user-name'>Login</span>
+            <button
+              className='user-nav__user-name button button--link'
+              onClick={props.startLogin}
+            >
+              Login
+            </button>
           )}
         </div>
       </nav>
@@ -49,4 +55,9 @@ const mapStateToProps = (state) => {
     userInfo: state.auth.userInfo,
   };
 };
-export default connect(mapStateToProps)(MainHeader);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    startLogin: () => dispatch(startLogin()),
+  };
+};
+export default connect(mapStateToProps, mapDispatchToProps)(MainHeader);

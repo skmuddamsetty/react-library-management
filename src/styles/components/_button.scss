@@ -10,8 +10,13 @@
   line-height: 1;
 }
 
+button:active {
+  outline: none;
+}
+
 .button--link {
   background: none;
+  color: #888888;
 }
 
 .button--secondary {
