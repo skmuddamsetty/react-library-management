@@ -18,9 +18,7 @@
 .main-header {
   height: 8rem;
   background-color: #fff;
-  background-color: #101d2c;
-  background: linear-gradient(to right bottom, $primary, $secondary);
-  color: #f9f7f6;
+  color: $color-1;
   border-bottom: grey;
   display: flex;
   justify-content: space-between;
