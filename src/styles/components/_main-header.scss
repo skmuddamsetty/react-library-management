@@ -8,6 +8,8 @@
   &__logo {
     height: 3.25rem;
     margin-left: 2rem;
+    width: 3.25rem;
+    fill: $off-white;
   }
 }
 
@@ -104,5 +106,13 @@
     border-radius: 50%;
     margin-right: 1rem;
     width: 3.75rem;
+    background-color: #f9f7f6;
+  }
+  &__user-menu {
+    position: absolute;
+    top: 7.2rem;
+    width: 100%;
+    background: white;
+    padding: 0 2rem;
   }
 }
