@@ -19,6 +19,7 @@ body {
   font-family: 'Fira Code', monospace, Helvetica, Arial, sans-serif;
   font-size: $m-size;
   line-height: 1.6;
+  background: linear-gradient(to right bottom, white, $secondary-font-color);
 }
 
 button {
