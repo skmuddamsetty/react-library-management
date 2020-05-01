@@ -1,13 +1,21 @@
 import React from 'react';
 const SideBar = (props) => (
   <div className='sidebar'>
-    <div className='list-body'>
-      <div className='list-item'>
-        <p className='list-item__title'>New Releases</p>
+    <div className='sidenav'>
+      <a href='#about'>About</a>
+      <a href='#services'>Services</a>
+      <a href='#clients'>Clients</a>
+      <a href='#contact'>Contact</a>
+      <button className='dropdown-btn'>
+        Dropdown
+        <i className='fa fa-caret-down'></i>
+      </button>
+      <div className='dropdown-container'>
+        <a href='#'>Link 1</a>
+        <a href='#'>Link 2</a>
+        <a href='#'>Link 3</a>
       </div>
-      <div className='list-item'>
-        <p className='list-item__title'>New Releases</p>
-      </div>
+      <a href='#contact'>Search</a>
     </div>
   </div>
 );

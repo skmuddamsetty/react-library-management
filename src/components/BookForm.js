@@ -11,6 +11,7 @@ class BookForm extends React.Component {
       price: props.book ? (props.book.price / 100).toString() : '',
       createdAt: props.book ? moment(props.book.publishedAt) : moment(),
       calendarFocused: false,
+      publisher: props.book ? props.book.publisher : '',
       error: '',
     };
   }
@@ -47,6 +48,10 @@ class BookForm extends React.Component {
       calendarFocused: focused,
     }));
   };
+  publisherChangeHandler = (e) => {
+    const value = e.target.value;
+    this.setState(() => ({ publisher: value }));
+  };
   submitHandler = (e) => {
     e.preventDefault();
     if (!this.state.title || !this.state.price) {
@@ -74,6 +79,14 @@ class BookForm extends React.Component {
           autoFocus
           value={this.state.title}
           onChange={this.titleChangeHandler}
+        />
+        <input
+          className='text-input'
+          type='text'
+          placeholder='Publisher'
+          autoFocus
+          value={this.state.publisher}
+          onChange={this.publisherChangeHandler}
         />
         <input
           className='text-input'
