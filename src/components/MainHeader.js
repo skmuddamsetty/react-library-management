@@ -26,7 +26,7 @@ export class MainHeader extends React.Component {
           <svg className='logo-box__logo'>
             <use xlinkHref='/images/sprite.svg#icon-open-book'></use>
           </svg>
-          {/*<span className='logo-box__title'>Sunshine Library</span>*/}
+          {<span className='logo-box__title'>Books</span>}
         </div>
         <form className='search'>
           <input

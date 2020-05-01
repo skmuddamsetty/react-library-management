@@ -18,7 +18,11 @@
 .main-header {
   height: 8rem;
   background-color: #fff;
-  background: linear-gradient(to right bottom, $primary, $secondary);
+  background: linear-gradient(
+    to right bottom,
+    darken($secondary, 10%),
+    lighten($primary, 8%)
+  );
   color: $color-1;
   border-bottom: grey;
   display: flex;

@@ -3,6 +3,11 @@
   height: 100%;
   width: 100%;
   background: linear-gradient(to right bottom, $primary, $secondary);
+  background: linear-gradient(
+    to right bottom,
+    darken($secondary, 10%),
+    lighten($primary, 8%)
+  );
   overflow-x: hidden;
   padding-top: 20px;
   font-family: 'Roboto', sans-serif;
